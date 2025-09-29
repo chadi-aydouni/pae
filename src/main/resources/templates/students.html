@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <title th:text="#{students_page_title}">Liste des étudiants</title>
+</head>
+
+<body>
+    <article layout:fragment="content">
+        <div id="students_container">
+
+            <!-- Voir fragments.html - student_list -->
+            <div id="students_list">
+
+                <h2 th:text="#{students_page_title}">Liste des étudiants</h2>
+
+                <form th:action="@{/students?name={name}(name=${name})}" >
+                    <input name="name" th:placeholder="#{students_search}" type="text" >
+                </form>
+
+                <div th:replace="~{fragments/table.html::student_list(students=${students})}"></div>
+            </div>
+
+            <div id="students_form" sec:authorize="hasAuthority('SECRETARIAT')">
+
+                <h2 th:text="#{students_add_title}">Ajouter un étudiant</h2>
+                
+                <form th:action="@{/students}" th:object="${student}" method="post"}>
+
+                    <div class="inputContainer">
+                        <label for="name" th:text="#{student_table_header_name}">Nom</label>
+                        <span th:errors="*{name}" class="errorMsg">msgErreur</span>
+                    </div>
+                    <input id="name" th:placeholder="#{placeholder_name}" type="text" th:field="*{name}" th:errorclass="errorInput" />
+
+
+                    <!-- MODIFICATION : générer cette partie automatiquement avec chacune des valeurs des énumérations. -->
+
+                    <!-- Radio pour genre -->
+
+                    <div class="inputContainer">
+                        <label for="gender" th:text="#{student_table_header_gender}">Genre</label>
+                        <span th:errors="*{gender}" class="errorMsg">msgErreur</span>
+                    </div>
+
+                    <div class= "radioContainer">
+
+                        <div class ="radioInputContainer">
+                            <label for="male" th:text="#{gender_male}">Homme</label>
+                            <input type="radio" id="male" th:field="*{gender}" th:value="MALE"/>
+                        </div>
+
+                        <div class ="radioInputContainer">
+                            <label for="female" th:text="#{gender_female}">Femme</label>
+                            <input type="radio" id="female" th:field="*{gender}" th:value="FEMALE" />
+                        </div>
+
+                    </div>
+
+                   <!-- Radio pour section -->
+
+                   <div class="inputContainer">
+                    <label for="section" th:text="#{student_table_header_section}">Section</label>
+                    <span th:errors="*{section}" class="errorMsg">msgErreur</span>
+                </div>
+
+                   <div class= "radioContainer">
+
+                    <div class ="radioInputContainer">
+                        <label for="gestion" th:text="#{section_gestion}">Gestion</label>
+                        <input type="radio" id="gestion" th:field="*{section}" th:value="GESTION"/>
+                    </div>
+
+                    <div class ="radioInputContainer">
+                        <label for="indsutrielle" th:text="#{section_industrielle}">Industrielle</label>
+                        <input type="radio" id="industrielle" th:field="*{section}" th:value="INDUSTRIELLE"/>
+                    </div>
+
+                    <div class ="radioInputContainer">
+                        <label for="reseau" th:text="#{section_reseau}">Réseau</label>
+                        <input type="radio" id="reseau" th:field="*{section}" th:value="RESEAU"/>
+                    </div>
+
+                   </div>
+
+                    <button type="submit" th:text="#{add_button}">Ajouter</button>
+                </form>
+            </div>
+
+        </div>
+    </article>
+</body>
+
+</html>

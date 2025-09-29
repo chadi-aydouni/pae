@@ -1,0 +1,42 @@
+
+<!-- Liste des étudiants -->
+
+<div id="students_list" th:fragment="student_list(students)">
+
+    <!-- Conditions : affiche l'un ou l'autre -->
+    <div th:if="${#lists.isEmpty(students)}" th:text="#{no_students}"> Aucun étudiant</div>
+    
+    <table th:unless="${#lists.isEmpty(students)}">
+        <tr><th th:text="#{student_table_header_id}">Matricule</th><th th:text="#{student_table_header_name}">Nom</th><th th:text="#{student_table_header_gender}">Genre</th><th th:text="#{student_table_header_section}">Section</th></tr>
+        <tr th:each="student: ${students}">
+
+            <td th:text="${student.id}">matricule</td>
+            <td th:inline="text"><a th:text = "${student.name}" th:href="@{/students/{id}/details(id=${student.id})}">nom</a></td> 
+            <td th:text="${student.gender.displayValue}">genre</td>
+            <td th:text="${student.section.displayValue}">section</td>
+
+        </tr>
+    </table>
+
+</div>
+
+<!-- Liste des cours -->
+
+<div id="courses_list" th:fragment="course_list(courses)">
+    <h2 th:text="#{courses_page_title}">Liste des cours</h2>
+
+    <!-- Conditions : affiche l'un ou l'autre -->
+    <div th:if="${#lists.isEmpty(courses)}" th:text="#{no_courses}"> Aucun cours</div>
+
+    <table th:unless="${#lists.isEmpty(courses)}">
+        <tr><th th:text="#{courses_table_header_id}">Sigle</th><th th:text="#{courses_table_header_title}">Titre</th><th th:text="#{courses_table_header_credits}">ECTS</th></tr>
+        <tr th:each="course: ${courses}">
+
+            <!-- Attention : utiliser ici un th:inline pour ne pas perdre la balise <a>-->
+            <td th:text = "${course.id}">sigle</td> 
+            <td th:inline="text"><a th:text = "${course.title}" th:href="@{/courses/{id}/details(id=${course.id})}">titre</a></td> 
+            <td th:text="${course.credits}">ects</td>
+        </tr>
+    </table>
+
+</div>

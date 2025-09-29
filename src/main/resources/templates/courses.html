@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <title th:text="#{courses_page_title}">Liste des cours</title>
+</head>
+
+<body>
+    <article layout:fragment="content">
+        <div id="courses_container">
+
+            <!-- Voir fragments.html - course_list -->
+            <div id="courses_list" th:replace="~{fragments/table.html::course_list(courses=${courses})}"></div>
+
+            <div id="courses_form" sec:authorize="hasAuthority('SECRETARIAT')">
+
+                <h2 th:text="#{courses_add_title}">Ajouter un cours</h2>
+                
+                <form th:action="@{/courses}" th:object="${course}" method="post"}>
+                    
+                    <div class="inputContainer">
+                        <label for="id" th:text="#{courses_table_header_id}">Sigle</label>
+                        <span th:errors="*{id}" class="errorMsg">msgErreur</span>
+                    </div>
+                    <input id="id" th:placeholder="#{placeholder_id}" type="text" th:field="*{id}" th:errorclass="errorInput" />
+
+                    
+                    <div class="inputContainer">
+                        <label for="title" th:text="#{courses_table_header_title}">Titre</label>
+                        <span th:errors="*{title}" class="errorMsg">msgErreur</span>
+                    </div>
+                    <input id="title" th:placeholder="#{placeholder_title}" type="text" th:field="*{title}" th:errorclass="errorInput"/>
+
+                    <div class="inputContainer">
+                        <label for="credits" th:text="#{courses_table_header_credits}">ECTS</label>
+                        <span th:errors="*{credits}" class="errorMsg">msgErreur</span>
+                    </div>
+                    <input id="credits" type="number" step="1" th:field="*{credits}" th:errorclass="errorInput"/>
+
+                    <button type="submit" th:text="#{add_button}">Ajouter</button>
+                </form>
+            </div>
+
+        </div>
+    </article>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/logo_esi.png}"/>
+    <title>Layout du PAE</title>
+</head>
+
+<body>
+    <header>
+        
+        <select id="language_select" name="language" onChange="location = this.value">
+            <option value="" disabled selected>Langue...</option>
+
+            <option th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}" 
+                th:value="${urlBuilder.replaceQueryParam('lang', 'fr').toUriString()}">Français</option>
+
+            <option th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}" 
+                th:value="${urlBuilder.replaceQueryParam('lang', 'en').toUriString()}">Anglais</option>
+        </select>
+        
+        <div id="heading_container">
+            <div id="heading" th:text="#{header_title}">Programme Annuel des Étudiants </div> <img id="logoesi" th:src="@{/img/logo_esi.png}"/>
+        </div>
+    
+        <div id="subheading">HE2B-ESI/WEBG5/MCD/2020-2021</div>
+
+        <div id="login_container">
+
+            <div id = "connected_user" sec:authorize="isAuthenticated()">
+                <span th:text="#{connected}">Connecté</span> : <span sec:authentication="name">user</span>
+            </div>
+            
+            <form method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+                <button id= "logout_button" type="submit" th:text="#{logout}">Déconnexion</button>
+            </form>
+    
+            <a th:href="@{/login}" sec:authorize="isAnonymous()">
+                 <button id="logout_button" type="submit" th:text="#{login}">Connexion</button>
+            </a>
+
+        </div>
+        
+        <!-- <p th:text="${#locale.language}"></p> -->
+    </header>
+
+    <nav>
+        <ul>
+        <li th:inline="text"><a th:href="@{/}"><img id = "home_img" th:src="@{/img/home.png}"></img></a></li>
+        <li th:inline="text"><a th:href="@{/courses_vuejs}">VueJS</a></li>
+        <li th:inline="text"><a th:href="@{/courses}" th:text="#{courses_menu}">Cours</a></li>
+        <li th:inline="text"><a th:href="@{/api/courses}" th:text="#{courses_api_menu}">Api des cours</a></li>
+        <li th:inline="text"><a th:href="@{/students}" th:text="#{students_menu}">Étudiants</a></li>
+        </ul>
+    </nav>
+    
+    <article layout:fragment="content">
+        Contenu
+    </article>
+
+    <footer>
+        HE2B-ESI/WEBG5/MCD/2020-2021 - 43729
+    </footer>
+</body>
+
+</html>
