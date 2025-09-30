@@ -9,8 +9,8 @@ public class HomeController {
 
     // Page d'accueil
     @GetMapping("/")
-    public String showIndex(Model model){
-        model.addAttribute("username", "MCD");
+    public String showIndex(Model model) {
+        model.addAttribute("username", "XXX");
         return "home";
     }
 }

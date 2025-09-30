@@ -13,15 +13,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class HomeControllerTest {
-    
+
     @Autowired
     private MockMvc mockMVC;
 
     @Test
     public void testShowIndex() throws Exception {
         mockMVC.perform(get("/"))
-        .andExpect(status().isOk())
-        .andExpect(view().name("home"))
-        .andExpect(content().string(Matchers.containsString("Bienvenue <span>MCD</span> sur le site de gestion du programme annuel des étudiants.")));
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(content().string(Matchers.containsString(
+                        "Bienvenue <span>XXX</span> sur le site de gestion du programme annuel des étudiants.")));
     }
 }
