@@ -18,16 +18,16 @@ public interface StudentDB extends CrudRepository<Student, Integer> {
     List<Object[]> findIdAndStudentsNames();
 
     // Donne le nom des étudiants et le nombre total de crédits de leur programme
-
-    @Query("SELECT s.name, SUM(c.credits) FROM Student s JOIN s.registered_courses c GROUP BY s")
+    @Query("SELECT s.name, SUM(c.credits) FROM Student s JOIN s.registeredCourses c GROUP BY s.name")
     List<Object[]> findStudentsNamesAndTotalCredits();
 
-    // Donne les étudiants qui ont + de crédits dans leur programme qu'une valeur en paramètre
-    @Query("SELECT s FROM Student s JOIN s.registered_courses c GROUP BY s HAVING SUM(c.credits) > :low")
+    // Donne les étudiants qui ont + de crédits dans leur programme qu'une valeur en
+    // paramètre
+    @Query("SELECT s FROM Student s JOIN s.registeredCourses c GROUP BY s HAVING SUM(c.credits) > :low")
     List<Student> findStudentsTotalCreditsGreaterThan(Long low);
 
-    // Donne les étudiants dont la chaîne de caractère en paramètre apparait dans le nom
+    // Donne les étudiants dont la chaîne de caractère en paramètre apparait dans le
+    // nom
     List<Student> findByNameContaining(String str);
-
 
 }

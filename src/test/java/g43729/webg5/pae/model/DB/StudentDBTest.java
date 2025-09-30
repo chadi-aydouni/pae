@@ -30,7 +30,7 @@ public class StudentDBTest {
     // Nom des étudiants
 
     @Test
-    public void findStudentsNames(){
+    public void findStudentsNames() {
         Student student1 = new Student(0, "Chadi", Gender.MALE, Section.GESTION, null);
         Student student2 = new Student(0, "Laurent", Gender.MALE, Section.GESTION, null);
         Student student3 = new Student(0, "Nicolas", Gender.MALE, Section.GESTION, null);
@@ -52,7 +52,7 @@ public class StudentDBTest {
     // Id et nom des étudiants
 
     @Test
-    public void findIdAndStudentsNames(){
+    public void findIdAndStudentsNames() {
         Student student1 = new Student(0, "Chadi", Gender.MALE, Section.GESTION, null);
         Student student2 = new Student(0, "Laurent", Gender.MALE, Section.GESTION, null);
         Student student3 = new Student(0, "Nicolas", Gender.MALE, Section.GESTION, null);
@@ -63,15 +63,15 @@ public class StudentDBTest {
 
         List<Object[]> input = new ArrayList<Object[]>();
 
-        Object[] std1 = {student1.getId(), student1.getName()};
-        Object[] std2 = {student2.getId(), student2.getName()};
-        Object[] std3 = {student3.getId(), student3.getName()};
+        Object[] std1 = { student1.getId(), student1.getName() };
+        Object[] std2 = { student2.getId(), student2.getName() };
+        Object[] std3 = { student3.getId(), student3.getName() };
 
         input.add(std1);
         input.add(std2);
         input.add(std3);
 
-        List<Object[]>  found = studentDB.findIdAndStudentsNames();
+        List<Object[]> found = studentDB.findIdAndStudentsNames();
 
         boolean sameContent = Arrays.deepEquals(input.toArray(), found.toArray());
         assertTrue(sameContent);
@@ -80,7 +80,7 @@ public class StudentDBTest {
     // Nom des étudiants et nombre total de crédits du programme
 
     @Test
-    public void findStudentsNamesAndTotalCredits(){
+    public void findStudentsNamesAndTotalCredits() {
         Student student1 = new Student(0, "Chadi", Gender.MALE, Section.GESTION, new ArrayList<Course>());
         Student student2 = new Student(0, "Laurent", Gender.MALE, Section.GESTION, new ArrayList<Course>());
 
@@ -95,27 +95,27 @@ public class StudentDBTest {
         courseDB.save(course2);
         courseDB.save(course3);
 
-        course1.getRegistered_students().add(student1);
-        student1.getRegistered_courses().add(course1);
+        course1.getRegisteredStudents().add(student1);
+        student1.getRegisteredCourses().add(course1);
         courseDB.save(course1);
 
-        course2.getRegistered_students().add(student2);
-        student2.getRegistered_courses().add(course2);
+        course2.getRegisteredStudents().add(student2);
+        student2.getRegisteredCourses().add(course2);
         courseDB.save(course2);
 
-        course3.getRegistered_students().add(student1);
-        student1.getRegistered_courses().add(course3);
+        course3.getRegisteredStudents().add(student1);
+        student1.getRegisteredCourses().add(course3);
         courseDB.save(course3);
 
         List<Object[]> input = new ArrayList<Object[]>();
 
-        Object[] std1 = {student1.getName(), (long) 15};
-        Object[] std2 = {student2.getName(), (long) 20};
+        Object[] std1 = { student1.getName(), (long) 15 };
+        Object[] std2 = { student2.getName(), (long) 20 };
 
         input.add(std1);
         input.add(std2);
 
-        List<Object[]>  found = studentDB.findStudentsNamesAndTotalCredits();
+        List<Object[]> found = studentDB.findStudentsNamesAndTotalCredits();
 
         boolean sameContent = Arrays.deepEquals(input.toArray(), found.toArray());
         assertTrue(sameContent);
@@ -124,7 +124,7 @@ public class StudentDBTest {
     // Etudiants qui ont + de crédits dans leur programme qu'une valeur en paramètre
 
     @Test
-    public void findStudentsTotalCreditsGreaterThan(){
+    public void findStudentsTotalCreditsGreaterThan() {
         Student student1 = new Student(0, "Chadi", Gender.MALE, Section.GESTION, new ArrayList<Course>());
         Student student2 = new Student(0, "Laurent", Gender.MALE, Section.GESTION, new ArrayList<Course>());
 
@@ -139,16 +139,16 @@ public class StudentDBTest {
         courseDB.save(course2);
         courseDB.save(course3);
 
-        course1.getRegistered_students().add(student1);
-        student1.getRegistered_courses().add(course1);
+        course1.getRegisteredStudents().add(student1);
+        student1.getRegisteredCourses().add(course1);
         courseDB.save(course1);
 
-        course2.getRegistered_students().add(student2);
-        student2.getRegistered_courses().add(course2);
+        course2.getRegisteredStudents().add(student2);
+        student2.getRegisteredCourses().add(course2);
         courseDB.save(course2);
 
-        course3.getRegistered_students().add(student1);
-        student1.getRegistered_courses().add(course3);
+        course3.getRegisteredStudents().add(student1);
+        student1.getRegisteredCourses().add(course3);
         courseDB.save(course3);
 
         List<Student> input = new ArrayList<Student>();
@@ -163,7 +163,7 @@ public class StudentDBTest {
     // Etudiant dont la chaîne de caractère en paramètre apparait dans le nom
 
     @Test
-    public void findByNameContaining(){
+    public void findByNameContaining() {
         Student student1 = new Student(0, "Chadi", Gender.MALE, Section.GESTION, new ArrayList<Course>());
         Student student2 = new Student(0, "Laurent", Gender.MALE, Section.GESTION, new ArrayList<Course>());
         Student student3 = new Student(0, "Laurine", Gender.FEMALE, Section.GESTION, new ArrayList<Course>());
@@ -181,5 +181,5 @@ public class StudentDBTest {
         boolean sameContent = Arrays.deepEquals(input.toArray(), found.toArray());
         assertTrue(sameContent);
     }
-    
+
 }

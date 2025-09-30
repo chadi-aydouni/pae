@@ -1,48 +1,56 @@
 package g43729.webg5.pae.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import g43729.webg5.pae.model.DB.CourseDB;
 import g43729.webg5.pae.model.DB.StudentDB;
-import lombok.extern.slf4j.Slf4j;
 
-/*
-@Slf4j
-@Component
-public class Start implements CommandLineRunner{
+/**
+ * Classe de démarrage pour tester des requêtes avancées sur la base de données
+ */
+// @Component
+// public class Start implements CommandLineRunner {
 
-    @Autowired
-    private CourseDB courseDB;
+// private static final Logger log = LoggerFactory.getLogger(Start.class);
 
-    @Autowired
-    private StudentDB studentDB;
-    
-    // Permet de tester requête avancées 
-    @Override
-    public void run(String... args){
+// @Autowired
+// private CourseDB courseDB;
 
-    log.info("Cours avec crédits + grand que 5 : " + courseDB.findByCreditsGreaterThanEqual(5).toString());
-    log.info("Cours contenant le mot Développement : " + courseDB.findByTitleContaining("Développement").toString());
+// @Autowired
+// private StudentDB studentDB;
 
-    log.info("Nom des étudiants : " + studentDB.findStudentsNames().toString()); 
+// @Override
+// public void run(String... args) {
+// // Cours avec crédits >= 5
+// log.info("Cours avec crédits >= 5 : " +
+// courseDB.findByCreditsGreaterThanEqual(5).toString());
 
-    log.info("ID et nom des étudiants en une seule requête : ");
+// // Cours contenant le mot "Développement"
+// log.info(
+// "Cours contenant le mot Développement : " +
+// courseDB.findByTitleContaining("Développement").toString());
 
-        for(Object[] items : studentDB.findIdAndStudentsNames()){
-            log.info(items[0] + " - " + items[1]);
-        }
+// // Nom des étudiants
+// log.info("Nom des étudiants : " + studentDB.findStudentsNames().toString());
 
-    log.info("Noms des étudiants et nombre total de crédits du programme: ");
+// // ID et nom des étudiants
+// log.info("ID et nom des étudiants en une seule requête :");
+// for (Object[] items : studentDB.findIdAndStudentsNames()) {
+// log.info(items[0] + " - " + items[1]);
+// }
 
-        for(Object[] items : studentDB.findStudentsNamesAndTotalCredits()){
-            log.info(items[0] + " - " + items[1]);
-        }
+// // Noms des étudiants et nombre total de crédits du programme
+// log.info("Noms des étudiants et nombre total de crédits du programme :");
+// for (Object[] items : studentDB.findStudentsNamesAndTotalCredits()) {
+// log.info(items[0] + " - " + items[1]);
+// }
 
-    log.info("Noms des étudiants qui ont un nombre de crédits dans leur programme supérieur à 10 : " + studentDB.findStudentsTotalCreditsGreaterThan(
-            (long) 10).toString());
-
-    }
-}
-*/
+// // Étudiants avec total crédits > 10
+// log.info("Noms des étudiants avec total crédits > 10 : " +
+// studentDB.findStudentsTotalCreditsGreaterThan(10L).toString());
+// }
+// }
