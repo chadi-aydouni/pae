@@ -62,21 +62,21 @@ Once the application is launched, you can:
 
 * **Manage courses**:
 
-  * View all courses
-  * Add new courses
-  * View course details and registered students
-  * Register students for courses
+  * View all courses.
+  * Add new courses.
+  * View course details and registered students.
+  * Register students for courses.
 
 * **Manage students**:
 
-  * View all students
-  * Add new students
-  * View student details and their registered courses
-  * Register students for courses
+  * View all students.
+  * Add new students.
+  * View student details and their registered courses.
+  * Register students for courses.
 
 * **Authentication**:
 
-  * Login as a student, professor or secretary 
+  * Login as a student, professor or secretary. 
 
 * **Optional Vue.js interface**:
 
@@ -92,5 +92,5 @@ My own contributions in this repository are shared under the MIT License. Files 
 
 This repository specifically includes the following materials provided by the instructor:
 
-* **BeanValidationUtil.java** : methods for testing validation annotations applied to entities
-* **logo_esi.png** – Logo of ESI (École Supérieure d’Informatique, Brussels). All rights reserved
+* **BeanValidationUtil.java** : methods for testing validation annotations applied to entities.
+* **logo_esi.png** – Logo of ESI (École Supérieure d’Informatique, Brussels). All rights reserved.
